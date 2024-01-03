@@ -3,44 +3,28 @@ import './dev/componets/my-paragraph';
 
 export class LitApp extends LitElement {
   static properties = {
-    username: {},
-    password: {},
-    rememberMe: {state: false},
+    name: {},
+    colors: {},
   };
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     :host {
-      color: black;
+      color: red;
     }
   `;
 
   constructor() {
     super();
     // Declare reactive properties
-    this.username = '';
-    this.password = '';
-    this.rememberMe = false;
-  }
-
-  _usernameChanged(e) {
-    this.username = e.target.value;
-  }
-
-  _passwordChanged(e) {
-    this.password = e.target.value;
-  }
-
-  _submitCredentials() {
-    console.log('username: %s, psw: %s', this.username, this.password);
-  }
-
-  _invertRememberMe(e) {
-    this.rememberMe = !this.rememberMe;
-    console.log(this.rememberMe);
+    this.name = 'World';
+    this.colors = ['red', 'green', 'blue'];
   }
 
   // Render the UI as a function of component state
   render() {
+    var componentStyle =
+      'padding: 1rem; border-radius: 8px; background-color : black';
+
     var mainPageStyle = `height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-left: 7vw; background-size: cover; background-repeat: no-repeat; background-image: url("https://srvunicloud-prod.deltasystem.it/dianaweb/public/img_custom/wallpaper/wallpaper_unigea.png?reload=1704279551"`;
 
     var loginFormStyle =
@@ -49,18 +33,11 @@ export class LitApp extends LitElement {
     return html`<div style=${mainPageStyle}>
       <div style="max-width: 30%">
         <div style=${loginFormStyle}>
-          <div
-            style="display: flex; align-items: center; justify-content: center; margin-bottom: 16px"
-          >
-            <img style="max-width: 30%" src="./images/logo_unigea_small.png" />
-          </div>
-
           <input
             id="frm_1__hf0utnnme"
             name="hf0utnnme"
             type="text"
             class=""
-            @input=${this._usernameChanged}
             style="margin: 0; padding: 0.5em; font-size: 1.2em"
             placeholder="Username"
             value=""
@@ -71,7 +48,6 @@ export class LitApp extends LitElement {
             name="hf0utnpsw"
             type="password"
             class=""
-            @input=${this._passwordChanged}
             style="margin: 0; padding: 0.5em; font-size: 1.2em;m"
             placeholder="Password"
             value=""
@@ -87,7 +63,6 @@ export class LitApp extends LitElement {
               name="hb0save"
               type="checkbox"
               class=""
-              @click=${this._invertRememberMe}
               value="*on"
               style="font-size: 1.3em; margin: 4px; cursor: pointer"
             /><label
@@ -95,7 +70,13 @@ export class LitApp extends LitElement {
               name="hb0savelbl"
               for="frm_1__hb0save"
               >Ricordami</label
-            >
+            ><input
+              id="frm_1__hb0token"
+              name="hb0token"
+              type="text"
+              class="hidden"
+              value=""
+            />
           </div>
           <button
             id="frm_1__hf0btnlogin"
@@ -104,13 +85,21 @@ export class LitApp extends LitElement {
             class="frmbtnsbm frmbtntxt"
             type="button"
             value=""
-            @click=${this._submitCredentials}
-            style="margin: 0; width: 100%; height: 2.5em; font-weight: bold; color: white; background: rgb(2, 102, 204)"
+            style="margin: 0; width: 100%; height: 2.5em;"
             title="LOGIN"
           >
             LOGIN
           </button>
         </div>
+        <div style=${componentStyle}>
+          <ul>
+            ${this.colors.map(
+              (color, index) =>
+                html`<li style="  color: ${color}">${color} ${index}</li>`
+            )}
+          </ul>
+        </div>
+        <my-paragraph></my-paragraph>
       </div>
     </div>`;
   }
