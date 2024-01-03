@@ -1,7 +1,7 @@
 import {LitElement, css, html} from 'lit';
 import './dev/componets/my-paragraph';
 
-export class LitApp extends LitElement {
+export class UnigeaLogin extends LitElement {
   static properties = {
     username: {},
     password: {},
@@ -154,4 +154,4 @@ export class LitApp extends LitElement {
     </div>`;
   }
 }
-customElements.define('lit-app', LitApp);
+customElements.define('unigea-login', UnigeaLogin);
