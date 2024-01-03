@@ -12,6 +12,45 @@ export class LitApp extends LitElement {
     :host {
       color: black;
     }
+    .input:hover {
+      box-shadow: rgb(251, 196, 79) 0em 0em 5px;
+      outline: 0;
+    }
+
+    .input[readonly]:hover {
+      box-shadow: rgb(174, 198, 221) 0em 0em 5px;
+    }
+
+    .input[type='checkbox']:hover {
+      box-shadow: rgb(0, 128, 128) 0em 0em 5px;
+    }
+
+    .input[type='checkbox'][disabled]:hover {
+      box-shadow: rgb(0, 0, 0) 0em 0em 5px;
+    }
+
+    /* BUTTON */
+    button:not([disabled]):not(.appbtn):not(.tlbbtn):hover {
+      box-shadow: rgb(0, 128, 128) 0em 0em 5px;
+    }
+
+    button[disabled]:hover {
+      box-shadow: rgb(0, 0, 0) 0em 0em 5px;
+    }
+
+    .tlbbox:hover {
+      background-color: whitesmoke;
+    }
+
+    /* TAB BUTTON */
+    button.appbtn:not(.appbtnopn):hover {
+      background-color: lightgrey;
+    }
+
+    /* MENU BUTTON */
+    button.dktmnubtn:hover {
+      background-color: lightgrey;
+    }
   `;
 
   constructor() {
@@ -59,7 +98,7 @@ export class LitApp extends LitElement {
             id="frm_1__hf0utnnme"
             name="hf0utnnme"
             type="text"
-            class=""
+            class="input"
             @input=${this._usernameChanged}
             style="margin: 0; padding: 0.5em; font-size: 1.2em"
             placeholder="Username"
@@ -70,7 +109,7 @@ export class LitApp extends LitElement {
             id="frm_1__hf0utnpsw"
             name="hf0utnpsw"
             type="password"
-            class=""
+            class="input"
             @input=${this._passwordChanged}
             style="margin: 0; padding: 0.5em; font-size: 1.2em;m"
             placeholder="Password"
@@ -86,7 +125,7 @@ export class LitApp extends LitElement {
               id="frm_1__hb0save"
               name="hb0save"
               type="checkbox"
-              class=""
+              class="input"
               @click=${this._invertRememberMe}
               value="*on"
               style="font-size: 1.3em; margin: 4px; cursor: pointer"
